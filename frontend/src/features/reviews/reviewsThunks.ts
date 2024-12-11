@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi.ts';
-import { IReviewMutation } from '../../types';
+import { IReview, IReviewMutation } from '../../types';
 
 export const createReview = createAsyncThunk<void, IReviewMutation>(
   'reviews/createReview',
@@ -18,5 +18,13 @@ export const createReview = createAsyncThunk<void, IReviewMutation>(
     })
 
     await axiosApi.post('/reviews', formData);
+  }
+);
+
+export const fetchReviews = createAsyncThunk<IReview[], void>(
+  'reviews/fetchReviews',
+  async () => {
+    const reviewsResponse = await axiosApi<IReview[]>('/reviews');
+    return reviewsResponse.data || [];
   }
 );

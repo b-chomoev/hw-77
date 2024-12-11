@@ -1,7 +1,7 @@
 import { IReview } from '../../types';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store.ts';
-import { createReview } from './reviewsThunks.ts';
+import { createReview, fetchReviews } from './reviewsThunks.ts';
 
 
 interface IReviewState {
@@ -34,6 +34,16 @@ export const reviewsSlice = createSlice({
       })
       .addCase(createReview.rejected, (state) => {
         state.createLoading = false;
+      })
+      .addCase(fetchReviews.pending, (state) => {
+        state.fetchLoading = true;
+      })
+      .addCase(fetchReviews.fulfilled, (state, {payload: reviews}) => {
+        state.fetchLoading = false;
+        state.reviews = reviews;
+      })
+      .addCase(fetchReviews.rejected, (state) => {
+        state.fetchLoading = false;
       })
   }
 });
