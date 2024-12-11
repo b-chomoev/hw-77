@@ -1,0 +1,20 @@
+[
+  {
+    "id": "f06cf6ba-dcde-466d-996e-f39093778e2e",
+    "author": "Beks",
+    "message": "Hello World",
+    "image": "images/57c2458f-2bca-4f8f-98d3-eeba35f81ec2.png"
+  },
+  {
+    "id": "f2f28f6a-51b3-4d8f-9fa3-3206bb72f428",
+    "author": "Beks",
+    "message": "Awesome!",
+    "image": "images/10448072-e611-4db2-844c-2d15797624b0.png"
+  },
+  {
+    "id": "c914ad47-f1d9-490a-9aba-6bb8ddd1b305",
+    "author": "Anonymous",
+    "message": "Awesome!",
+    "image": null
+  }
+]
