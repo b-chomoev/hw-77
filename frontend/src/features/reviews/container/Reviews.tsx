@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { IReviewMutation } from '../../../types';
 import FileInput from '../../../components/FileInput/FileInput.tsx';
+import { useAppDispatch } from '../../../app/hooks.ts';
+import { createReview } from '../reviewsThunks.ts';
+import { toast } from 'react-toastify';
 
 const initialState = {
   author: '',
@@ -10,15 +13,19 @@ const initialState = {
 
 const Reviews = () => {
   const [form, setForm] = useState<IReviewMutation>(initialState);
+  const dispatch = useAppDispatch();
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = e.target;
     setForm(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const onSubmitForm = (e: React.FormEvent) => {
+  const onSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+
+    await dispatch(createReview(form));
+    setForm(initialState);
+    toast.success('Product was successfully created!');
   };
 
   const fileEventChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
