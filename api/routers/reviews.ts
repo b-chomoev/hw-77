@@ -25,4 +25,9 @@ reviewsRouter.post('/', imagesUpload.single('image'), async (req, res) => {
     res.send(savedReview);
 });
 
+reviewsRouter.get('/', async (req, res) => {
+    const reviews = await fileDb.getItems();
+    res.send(reviews);
+});
+
 export default reviewsRouter;
